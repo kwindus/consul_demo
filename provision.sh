@@ -10,10 +10,13 @@ sudo apt-get update
 sudo apt-get install -y unzip
 sudo apt-get install -y curl
 
+CONSUL_VERSION=0.6.0
+CONSUL_URL_BASE=https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}
+
 # Get Consul.
 echo Downloading and installing consul
 cd /tmp
-wget https://dl.bintray.com/mitchellh/consul/0.5.2_linux_amd64.zip -O consul.zip
+wget ${CONSUL_URL_BASE}_linux_amd64.zip -O consul.zip
 cd /usr/local/bin/
 mv /tmp/consul.zip .
 sudo unzip consul.zip
@@ -25,7 +28,7 @@ sudo mkdir -p /usr/local/bin/dist
 if [ "$2" == "Y" ]; then
     echo Downloading and installing ui
     cd /tmp
-    wget https://releases.hashicorp.com/consul/0.6.0/consul_0.6.0_web_ui.zip -O ui.zip
+    wget ${CONSUL_URL_BASE}_web_ui.zip -O ui.zip
     cd /usr/local/bin/dist
     mv /tmp/ui.zip .
     sudo unzip ui.zip
